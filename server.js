@@ -18,9 +18,11 @@ app.prepare().then(() => {
   server.use('/api', middlewares, jsonServerRouter); // Mount json-server on '/api'
 
   // Next.js pages
-  server.get('*', (req, res) => {
-    return handle(req, res);
-  });
+  if (process.env.NODE_ENV !== 'build') {
+    server.get('*', (req, res) => {
+      return handle(req, res);
+    });
+  }
 
   server.listen(PORT, (err) => {
     if (err) throw err;
