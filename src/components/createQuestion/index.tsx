@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent } from 'react';
+import { FormEvent, useRef } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import {
   Button,
@@ -19,12 +19,31 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
+import { QuestionRequest } from '@/libs/apiCall/entity/questions';
+import { lastQId } from '@/libs/helpers/lastQuestionId';
 
 function CreateQuestion() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const title = useRef<HTMLInputElement>(null);
+  const body = useRef<HTMLTextAreaElement>(null);
 
-  function submitHandler(event: FormEvent<HTMLFormElement>): void {
+  const { mutateAsync } = QuestionRequest.useCreateQuestion();
+
+  async function submitHandler(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (title.current && body.current) {
+      const lastQuestionId = lastQId();
+      const data = {
+        usersId: 4,
+        id: lastQuestionId + 1,
+        title: title.current?.value,
+        body: body.current?.value,
+        createdAt: Date.now(),
+      };
+
+      await mutateAsync(data as Questions);
+      onClose();
+    }
   }
 
   return (
@@ -43,11 +62,11 @@ function CreateQuestion() {
               <Stack spacing={4}>
                 <FormControl isRequired>
                   <FormLabel>موضوع</FormLabel>
-                  <Input autoComplete='off' name='title' />
+                  <Input autoComplete='off' name='title' ref={title} />
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>متن سوال</FormLabel>
-                  <Textarea name='body' />
+                  <Textarea name='body' ref={body} />
                 </FormControl>
               </Stack>
             </ModalBody>

@@ -4,6 +4,8 @@ import Layout from '@/components/layout';
 import Questions from '@/components/questions';
 import { QuestionRequest } from '@/libs/apiCall/entity/questions';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'لیست سوالات',
   description: 'لیست سوالات پرسیده شده.',

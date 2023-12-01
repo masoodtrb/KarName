@@ -1,8 +1,6 @@
 interface Comments {
-  questionsId: number;
+  questionId: number;
   id: number;
-  name: string;
-  email: string;
   body: string;
   createdAt: number;
   users: Users;

@@ -7,8 +7,6 @@ import QuestionCard from '../questionCard';
 function Questions() {
   const { data } = QuestionRequest.useQuestionList();
 
-  console.log({ data });
-
   return (
     <Stack spacing={8}>
       {data &&

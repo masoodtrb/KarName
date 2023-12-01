@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "(cross-env NODE_ENV='build' node server.js &) && sleep 10 && next build",
+    "build": "next build",
     "start": "cross-env NODE_ENV=production node server.js",
     "lint": "next lint"
   },

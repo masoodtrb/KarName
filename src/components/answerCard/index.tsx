@@ -1,40 +1,60 @@
 'use client';
 
+import { useState } from 'react';
 import { Box, Button, HStack, Text } from '@chakra-ui/react';
-import { UserRequest } from '@/libs/apiCall/entity/users';
+import { QuestionRequest } from '@/libs/apiCall/entity/questions';
 import AppCard from '../card';
 import CardBody from '../card/cardBody';
 import CardHeader from '../card/cardHeader';
 import AnswerCardHeader from './answerCardHeader';
 
-interface Props {
-  dateTime: number;
-  body: string;
-  id: number;
-  userId: number;
-  like: number;
-  dislike: number;
-}
+interface Props extends Comments {}
 
-function AnswerCard({ dateTime, body, userId, like, dislike }: Props) {
-  const { data, isLoading } = UserRequest.useUserLoad(userId);
+function AnswerCard({ body, users, like, dislike, createdAt, ...rest }: Props) {
+  const { mutateAsync } = QuestionRequest.useCommentAction();
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function likeHandler() {
+    setIsLoading(true);
+    await mutateAsync({
+      body,
+      users,
+      like: like + 1,
+      dislike,
+      createdAt,
+      ...rest,
+    });
+    setIsLoading(false);
+  }
+  async function dislikeHandler() {
+    setIsLoading(true);
+    await mutateAsync({
+      body,
+      users,
+      like,
+      dislike: dislike + 1,
+      createdAt,
+      ...rest,
+    });
+    setIsLoading(false);
+  }
+
   return (
     <AppCard>
-      {data && !isLoading && (
-        <CardHeader title={data.name} image={data.image}>
-          <AnswerCardHeader dateTime={dateTime} like={like} dislike={dislike} />
-        </CardHeader>
-      )}
+      <CardHeader title={users.name} image={users.image}>
+        <AnswerCardHeader dateTime={createdAt} like={like} dislike={dislike} />
+      </CardHeader>
+
       <CardBody>
         <Box>
           <Text>{body}</Text>
         </Box>
         <Box display={'flex'} alignItems={'end'}>
           <HStack spacing={6}>
-            <Button variant={'outline'} colorScheme='green'>
+            <Button variant={'outline'} colorScheme='green' onClick={likeHandler} isLoading={isLoading}>
               پاسخ خوب بود
             </Button>
-            <Button variant={'outline'} colorScheme='red'>
+            <Button variant={'outline'} colorScheme='red' onClick={dislikeHandler} isLoading={isLoading}>
               پاسخ خوب نبود
             </Button>
           </HStack>

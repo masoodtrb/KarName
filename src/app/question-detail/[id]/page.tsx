@@ -4,7 +4,7 @@ import Layout from '@/components/layout';
 import QuestionComment from '@/components/questionComment';
 import { QuestionRequest } from '@/libs/apiCall/entity/questions';
 
-interface Props {}
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'جزییات سوال',
@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 };
 async function QuestionDetail({ params }: { params: { id: string } }) {
   const qc = new QueryClient();
+
   await QuestionRequest.questionLoadPrefetch(qc, parseInt(params.id));
+  await QuestionRequest.questionLoadCommentPrefetch(qc, parseInt(params.id));
 
   return (
     <HydrationBoundary state={dehydrate(qc)}>

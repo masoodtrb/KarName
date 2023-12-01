@@ -15,6 +15,7 @@ app.prepare().then(() => {
   const jsonServerRouter = jsonServer.router('db.json'); // Specify your JSON file
   const middlewares = jsonServer.defaults();
 
+  server.use(jsonServer.bodyParser)
   server.use('/api', middlewares, jsonServerRouter); // Mount json-server on '/api'
 
   // Next.js pages
