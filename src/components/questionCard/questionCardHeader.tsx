@@ -6,9 +6,10 @@ import DateTime from '../dateTime';
 
 interface Props {
   dateTime: number;
+  commentCount: number;
 }
 
-function QuestionCardHeader({ dateTime }: Props) {
+function QuestionCardHeader({ dateTime, commentCount }: Props) {
   return (
     <HStack spacing={5} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
       <DateTime dateTime={dateTime} />
@@ -16,7 +17,7 @@ function QuestionCardHeader({ dateTime }: Props) {
         <Text color={'gray.400'} fontSize={'20px'}>
           <PiChatTeardropTextBold />
         </Text>
-        <span>22</span>
+        <span>{commentCount}</span>
       </HStack>
     </HStack>
   );

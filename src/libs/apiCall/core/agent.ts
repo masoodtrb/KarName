@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { isServer } from '@/libs/helpers/isServer';
 
 const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   return config;
@@ -27,7 +28,7 @@ export function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance
 
 export const axiosAgent = (() => {
   return axios.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: isServer() ? 'http://localhost:3000/api/' : '/api/',
     headers: {
       'Content-Type': 'application/json',
     },

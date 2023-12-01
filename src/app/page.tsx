@@ -1,21 +1,23 @@
-import { Stack } from '@chakra-ui/react';
+import { Metadata } from 'next';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import Layout from '@/components/layout';
-import QuestionCard from '@/components/questionCard';
+import Questions from '@/components/questions';
+import { QuestionRequest } from '@/libs/apiCall/entity/questions';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'لیست سوالات',
+  description: 'لیست سوالات پرسیده شده.',
+};
+
+export default async function Home() {
+  const queryClient = new QueryClient();
+  await QuestionRequest.questionListPrefetch(queryClient);
+
   return (
-    <Layout title='لیست سوالات'>
-      <Stack spacing={8}>
-        <QuestionCard
-          dateTime={1701369330692}
-          userImage={'https://randomuser.me/api/portraits/men/57.jpg'}
-          title={'مشکل در Auth در React'}
-          body={
-            'سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره'
-          }
-          id='1'
-        />
-      </Stack>
-    </Layout>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Layout title='لیست سوالات'>
+        <Questions />
+      </Layout>
+    </HydrationBoundary>
   );
 }

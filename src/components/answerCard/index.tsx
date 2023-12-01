@@ -1,24 +1,30 @@
 'use client';
 
 import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { UserRequest } from '@/libs/apiCall/entity/users';
 import AppCard from '../card';
 import CardBody from '../card/cardBody';
 import CardHeader from '../card/cardHeader';
 import AnswerCardHeader from './answerCardHeader';
 
 interface Props {
-  title: string;
-  userImage: string;
   dateTime: number;
   body: string;
+  id: number;
+  userId: number;
+  like: number;
+  dislike: number;
 }
 
-function AnswerCard({ title, userImage, dateTime, body }: Props) {
+function AnswerCard({ dateTime, body, userId, like, dislike }: Props) {
+  const { data, isLoading } = UserRequest.useUserLoad(userId);
   return (
     <AppCard>
-      <CardHeader title={title} image={userImage}>
-        <AnswerCardHeader dateTime={dateTime} />
-      </CardHeader>
+      {data && !isLoading && (
+        <CardHeader title={data.name} image={data.image}>
+          <AnswerCardHeader dateTime={dateTime} like={like} dislike={dislike} />
+        </CardHeader>
+      )}
       <CardBody>
         <Box>
           <Text>{body}</Text>

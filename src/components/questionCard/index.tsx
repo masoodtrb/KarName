@@ -12,27 +12,26 @@ interface Props {
   userImage: string;
   title: string;
   body: string;
-  id: string;
+  id: number;
+  commentCount: number;
 }
 
-function QuestionCard({ dateTime, userImage, title, body, id }: Props) {
+function QuestionCard({ dateTime, userImage, title, body, id, commentCount }: Props) {
   return (
     <AppCard>
       <CardHeader title={title} image={userImage}>
-        <QuestionCardHeader dateTime={dateTime} />
+        <QuestionCardHeader dateTime={dateTime} commentCount={commentCount} />
       </CardHeader>
       <CardBody>
         <Box>
           <Text>{body}</Text>
         </Box>
         <Box display={'flex'} alignItems={'end'}>
-          {/* <Link href={`/question-detail/${id}`}> */}
           <Link as={NextLink} href={`/question-detail/${id}`}>
             <Button variant={'outline'} colorScheme='green'>
               مشاهده جزییات
             </Button>
           </Link>
-          {/* </Link> */}
         </Box>
       </CardBody>
     </AppCard>
