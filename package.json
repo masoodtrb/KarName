@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "(cross-env NODE_ENV='build' node server.js &) && sleep 10 && next build && kill $(lsof -t -i:3000)",
+    "build": "(cross-env NODE_ENV='build' node server.js &) && sleep 10 && next build",
     "start": "cross-env NODE_ENV=production node server.js &",
     "lint": "next lint"
   },

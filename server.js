@@ -24,10 +24,16 @@ app.prepare().then(() => {
     });
   }
 
-  server.listen(PORT, (err) => {
+  const runserver = server.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${PORT}`);
   });
+
+  if (process.env.NODE_ENV !== 'build') {
+    setTimeout(() => {
+      runserver.close()
+    }, 10000)
+  }
 });
 
 
