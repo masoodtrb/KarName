@@ -1,0 +1,21 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "breadcrumbs.showKeys": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": false,
+        "source.organizeImports": true
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
+    "terminal.integrated.allowMnemonics": true,
+    "editor.fontFamily": "Source Code Pro, Consolas, 'Courier New', monospace, MesloLGS NF",
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+}
