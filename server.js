@@ -8,8 +8,8 @@ const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT || 3000;
 
+const server = express();
 app.prepare().then(() => {
-  const server = express();
 
   // Set up json-server
   const jsonServerRouter = jsonServer.router('db.json'); // Specify your JSON file
@@ -31,4 +31,5 @@ app.prepare().then(() => {
   });
 });
 
+module.exports = server;
 
