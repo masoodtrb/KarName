@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { IoMdAdd } from 'react-icons/io';
-import { Box, Button, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
+import CreateQuestion from '../createQuestion';
 
 interface Props extends PropsWithChildren<unknown> {
   title?: string;
@@ -8,19 +8,19 @@ interface Props extends PropsWithChildren<unknown> {
 
 function Layout({ title, children }: Props) {
   return (
-    <Box px={14}>
-      <Flex justifyContent={'space-between'} py={4} px={14} mx={-14} backgroundColor={'white'}>
+    <Box>
+      <Flex justifyContent={'space-between'} py={4} px={14} backgroundColor={'white'}>
         <Box>
           <Heading>{title}</Heading>
         </Box>
         <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-          <Button rightIcon={<IoMdAdd />} colorScheme={'green'} variant={'solid'}>
-            سوال جدید
-          </Button>
+          <CreateQuestion />
           <Box display={'flex'} justifyContent={'center'} alignItems={'center'}></Box>
         </Box>
       </Flex>
-      <main>{children}</main>
+      <Box backgroundColor={'#F7F8F9'} minH={'100vh'} px={14} py={8}>
+        {children}
+      </Box>
     </Box>
   );
 }
