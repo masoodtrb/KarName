@@ -1,3 +1,5 @@
 {
-  "devCommand": "cross-env NODE_ENV=production node server.js"
+  "version": 2,
+  "builds": [{ "src": "./server.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
