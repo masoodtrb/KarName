@@ -1,7 +1,10 @@
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { isBrowser } from '@/libs/helpers';
 import { axiosAgent } from './agent';
+import { createStandaloneToast } from '@chakra-ui/react';
+
+const { toast } = createStandaloneToast()
 
 /**
  * @template T => Final Data (Result)
@@ -50,18 +53,18 @@ export const sendRequest = async <T = unknown, B = Record<string, unknown>>({
       success: isSuccess,
       errorType: 'server',
       data: response as unknown as T,
-      message: response.data.message || 'Default Error Message',
+      message: response.data.message || 'Api call has been crashed.',
     };
   } catch (err) {
     const error = err as AxiosError<IErrorResponse>;
     if (isBrowser()) {
       console.error('Error', error.message);
 
-      if (error.response?.data) {
-        toast.error(`Error: ${error.response?.data.message}`);
-      } else {
-        toast.error(`Error: ${error.message}`);
-      }
+      toast({
+        title: 'Error',
+        description: `Api call has been crashed.`,
+        status: 'error'
+      });
     }
     throw {
       success: false,

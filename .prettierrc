@@ -21,7 +21,7 @@
     "^@/libs/primitives(/.*)?$",
     "^@/libs/providers(/.*)?$",
     "^@/libs/hooks(/.*)?$",
-    "^@/libs/methods(/.*)?$",
+    "^@/libs/helpers(/.*)?$",
     "^@/theme(/.*)?$",
     "^@/constants(/.*)?$",
     "^@/assets(/.*)?$",
