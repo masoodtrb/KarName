@@ -54,13 +54,13 @@ dependencies:
     specifier: ^0.10.0
     version: 0.10.0
   next:
-    specifier: 14.0.3
+    specifier: ^14.0.3
     version: 14.0.3(react-dom@18.2.0)(react@18.2.0)
   react:
-    specifier: ^18
+    specifier: ^18.2
     version: 18.2.0
   react-dom:
-    specifier: ^18
+    specifier: ^18.2
     version: 18.2.0(react@18.2.0)
   react-icons:
     specifier: ^4.12.0
@@ -73,9 +73,6 @@ dependencies:
     version: 2.1.1(stylis@4.3.0)
 
 devDependencies:
-  '@faker-js/faker':
-    specifier: ^8.3.1
-    version: 8.3.1
   '@types/node':
     specifier: ^20
     version: 20.10.0
@@ -1510,11 +1507,6 @@ packages:
   /@eslint/js@8.54.0:
     resolution: {integrity: sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
-
-  /@faker-js/faker@8.3.1:
-    resolution: {integrity: sha512-FdgpFxY6V6rLZE9mmIBb9hM0xpfvQOSNOLnzolzKwsE1DH+gC7lEKV1p1IbR0lAYyvYd5a4u3qWJzowUkw1bIw==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: true
 
   /@humanwhocodes/config-array@0.11.13:

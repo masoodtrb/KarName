@@ -28,7 +28,7 @@ export function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance
 
 export const axiosAgent = (() => {
   return axios.create({
-    baseURL: isServer() ? 'http://localhost:3000/api/' : '/api/',
+    baseURL: 'https://kar-name-json-server.vercel.app/api/',
     headers: {
       'Content-Type': 'application/json',
     },
