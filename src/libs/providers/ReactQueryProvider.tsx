@@ -1,6 +1,6 @@
 'use client';
 
-import { cache, PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -10,6 +10,7 @@ function ReactQueryProvider({ children }: PropsWithChildren<unknown>) {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
+          staleTime: 1000 * 60,
         },
       },
     })
